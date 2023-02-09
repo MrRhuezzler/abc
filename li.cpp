@@ -1,6 +1,6 @@
 class Line {
 public:
-    static bool clipTest(float p, float q, float& u1, float u2) {
+    static bool clipTest(float p, float q, float& u1, float& u2) {
         if(p < 0.0f) {
             float r = q / p;
             if (r > u2) return false;
@@ -25,10 +25,10 @@ public:
         float dx = x2 - x1;
         float dy = y2 - y1;
 
-        if(clipTest(-dx, x1 - xmin, u1, u2))
-            if(clipTest(dx, xmax - x1, u1, u2))
-                if(clipTest(-dy, y1 - ymin, u1, u2))
-                    if(clipTest(dy, ymax - y1, u1, u2))
+        if(clipTest(-dx, x1 - xmin, u1, u2)){
+            if(clipTest(dx, xmax - x1, u1, u2)){
+                if(clipTest(-dy, y1 - ymin, u1, u2)){
+                    if(clipTest(dy, ymax - y1, u1, u2)){
                         if(u2 < 1.0f){
                             x2 = x1 + u2 * dx;
                             y2 = y1 + u2 * dy;
@@ -37,6 +37,10 @@ public:
                             x1 = x1 + u1 * dx;
                             y1 = y1 + u1 * dy;
                         }
+                    }
+                }
+            }
+        }
     }
 
     static void draw_without_clipping(float x1, float y1, float x2, float y2) {
