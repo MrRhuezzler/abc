@@ -5,7 +5,7 @@ public:
             float r = q / p;
             if (r > u2) return false;
             if (r > u1) u1 = r;
-        } else if(p < 0.0f) {
+        } else if(p > 0.0f) {
             float r = q / p;
             if (r < u1) return false;
             if (r < u2) u2 = r;
